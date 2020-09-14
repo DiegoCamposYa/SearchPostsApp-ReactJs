@@ -1,13 +1,18 @@
 import React from "react";
-import AppRouter from "./routers/AppRouter";
+
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import "./index.css";
+import LinearProgress from "@material-ui/core/LinearProgress";
+
+const AppRouter = React.lazy(() => import("./routers/AppRouter"));
 
 const TagsApp = () => {
   return (
     <Provider store={store}>
-      <AppRouter />
+      <React.Suspense fallback={<LinearProgress />}>
+        <AppRouter />
+      </React.Suspense>
     </Provider>
   );
 };

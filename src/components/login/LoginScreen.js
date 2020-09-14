@@ -5,11 +5,13 @@ import LoginForm from "./LoginForm";
 import NavBar from "../ui/NavBar";
 import ImageLoginScreen from "./ImageLoginScreen";
 
+import { authLogin } from "../../actions/auth";
+
 import { useDispatch } from "react-redux";
-import { login } from "../../actions/auth";
 
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import useLocalStorage from "../../hooks/useLocalStorage";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,12 +22,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LoginScreen = ({ history }) => {
+const LoginScreen = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const [user, setUser] = useLocalStorage("user", "");
   const handleLoginForm = (userName) => {
-    dispatch(login(userName));
+    dispatch(authLogin(userName));
+
+    setUser({ userName, isAuthenticated: true });
   };
 
   return (

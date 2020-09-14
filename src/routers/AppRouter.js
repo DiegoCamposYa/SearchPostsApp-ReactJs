@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
-import { useSelector } from "react-redux";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { useSelector, useDispatch } from "react-redux";
 
 import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom";
 
@@ -9,15 +8,21 @@ import LoginScreen from "../components/login/LoginScreen";
 import PublicRoute from "./PublicRouter";
 import HomeRoutes from "./HomeRoutes";
 import PrivateRoute from "./PrivateRoute";
+import useLocalStorage from "../hooks/useLocalStorage";
+
+import { authLogin } from "../actions/auth";
 
 const AppRouter = () => {
-  const { userName, isAuthenticated } = useSelector((state) => state.auth);
-
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.auth);
   const [user, setUser] = useLocalStorage("user", "");
 
   useEffect(() => {
-    setUser({ userName, isAuthenticated });
-  }, [userName, isAuthenticated]);
+    if (user) {
+      dispatch(authLogin(user.userName));
+    }
+  }, [user]);
+
   return (
     <Router>
       <div>
