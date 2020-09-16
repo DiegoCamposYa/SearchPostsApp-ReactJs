@@ -13,6 +13,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { starLogout } from "../../actions/auth";
+import { postsLogout } from "../../actions/post";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,6 +34,7 @@ const NavBar = () => {
 
   const handleClicLogout = () => {
     dispatch(starLogout());
+    dispatch(postsLogout());
   };
 
   return (

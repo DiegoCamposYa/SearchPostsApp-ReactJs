@@ -1,11 +1,11 @@
 import React from "react";
 
-import CardContentPost from "./CardContentPost";
-
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, CardMedia, Paper, Divider } from "@material-ui/core";
 import CardHeaderPost from "./CardHeaderPost";
 import Grow from "@material-ui/core/Grow";
+import CardContentPost from "./CardContentPost";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,

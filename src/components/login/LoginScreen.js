@@ -49,7 +49,7 @@ const LoginScreen = () => {
           }}
         >
           <Grid item xs={10}>
-            <Typography variant="h4">Login to search Pots</Typography>
+            <Typography variant="h4">Login to search Posts</Typography>
           </Grid>
           <br />
           <Grid item xs={10}>
